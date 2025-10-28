@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>123APE Mint Eligibility Checker 🦍</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #008000; /* အစိမ်း background */
+      color: #fff;
+      display: flex;
+      justify-content: center; /* horizontally center */
+      align-items: center;    /* vertically center */
+      height: 100vh;          /* viewport height အားလုံး */
+      text-align: center;
+      margin: 0;
+    }
+    h1 {
+      color: #FFD700;
+    }
+    input {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      width: 300px;
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 10px;
+    }
+    button {
+      background: linear-gradient(45deg, #FFD700, #FF8C00);
+      border: none;
+      color: #000;
+      border-radius: 10px;
+      padding: 10px 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .result {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(0,0,0,0.3); /* optional: slightly dark overlay for better contrast */
+      padding: 40px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>123APE Mint Checker 🦍</h1>
+    <p>Enter your wallet address to see if you can mint 🚀</p>
+
+    <input type="text" id="walletInput" placeholder="0xYourWalletAddress" />
+    <br>
+    <button onclick="check()">Check Eligibility</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    // 🧾 Whitelisted addresses (sample)
+    const whitelist = [
+      "0x5c8205ed4a993d7b3819106298076cd00466f18d",
+      "0x8c2a4718b47679bf8579a2c1b2d5c82f8d4b9cd5",
+      "0xbac0ea587ceb4de74930d3e4249e22ed85794323",
+      "0x51c7561BA63A541D90c557e7AceF3caB10c26856",
+      "0xfBCF3671003B772270311eCFA21be2c42E9D1a41",
+      "0xAC6603502f9866cfc0f024897D775e7A20A9D849",
+      "0xcc98365fc6b8ab4bc63260c5d20a157a4e24b959",
+      "0xBDA49E5D3EBda7158071687161411193DB325eD3",
+      "0xB9AbF6b6D3fB923Fb60a505a07291960baee16E3",
+      "0x41beda5e53b607738c85508af2d42dfccd815614",
+      "0x7Be4aFc9c922Bef2cC8964EAc8D9C5F0fb134530",
+      "0x45AE544d05FFee72d262c5ec1B1c62BF01525216",
+      "0x6c71371007d8e713d3f7ca319f0c318b4e30d6c5",
+      "0xA54071ECD1f34F56f6ab4b1E80DA9257832239B9",
+      "0x76474c16da4f5f8b23006512a696d1db6c314475",
+      "0xa101403313b0cb4054331d1ffac7341591ffcd51",
+      "0x560cc4874fbb4efdcea4ba83bb4bb92ea6f026e",
+      "0x0Ab5EeFC0873171C7FAc6E46000D1A59210A8e76"
+    ];
+
+    function check() {
+      const input = document.getElementById("walletInput").value.trim().toLowerCase();
+      const result = document.getElementById("result");
+
+      if (!input.startsWith("0x") || input.length !== 42) {
+        result.innerHTML = "⚠️ Invalid wallet address!";
+        result.style.color = "orange";
+        return;
+      }
+
+      if (whitelist.includes(input)) {
+        result.innerHTML = "✅ Eligible! You can mint 🚀";
+        result.style.color = "#00ff99";
+      } else {
+        result.innerHTML = "❌ Not eligible for mint.";
+        result.style.color = "#ff5555";
+      }
+    }
+  </script>
+</body>
+</html>
