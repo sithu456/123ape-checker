@@ -5,70 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>123APE Mint Eligibility Checker 🦍</title>
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      color: #FFD700;
-    }
-    input {
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      width: 300px;
-      font-size: 1rem;
-      text-align: center;
-      margin-top: 10px;
-    }
-    button {
-      background: linear-gradient(45deg, #FFD700, #FF8C00);
-      border: none;
-      color: #000;
-      border-radius: 10px;
-      padding: 10px 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .result {
-      margin-top: 30px;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
+    body { font-family: 'Poppins', sans-serif; background:#000; color:#fff; text-align:center; padding:50px;}
+    h1 { color:#FFD700;}
+    input{padding:12px;border-radius:10px;border:none;width:300px;font-size:1rem;text-align:center;margin-top:10px;}
+    button{background:linear-gradient(45deg,#FFD700,#FF8C00);border:none;color:#000;border-radius:10px;padding:10px 25px;font-size:1rem;cursor:pointer;margin-top:10px;}
+    .result{margin-top:30px;font-size:1.2rem;font-weight:bold;}
   </style>
 </head>
 <body>
   <h1>123APE Mint Checker 🦍</h1>
   <p>Enter your wallet address to see if you won GTD or FCFS mint 🚀</p>
-
   <input type="text" id="walletInput" placeholder="0xYourWalletAddress" />
   <br>
   <button onclick="check()">Check Eligibility</button>
-
   <div class="result" id="result"></div>
 
-  <!-- 🧩 External JS file link -->
   <script src="whitelist.js"></script>
 
   <script>
     function check() {
       const input = document.getElementById("walletInput").value.trim().toLowerCase();
       const result = document.getElementById("result");
-
       if (!input.startsWith("0x") || input.length !== 42) {
         result.innerHTML = "⚠️ Invalid wallet address!";
         result.style.color = "orange";
         return;
       }
-
-      if (gtdWhitelist.includes(input)) {
+      if (typeof gtdWhitelist !== 'undefined' && gtdWhitelist.includes(input)) {
         result.innerHTML = "✅ You won <b>GTD Mint</b> 🎉";
         result.style.color = "#00ff99";
-      } else if (fcfsWhitelist.includes(input)) {
+      } else if (typeof fcfsWhitelist !== 'undefined' && fcfsWhitelist.includes(input)) {
         result.innerHTML = "🚀 You won <b>FCFS Mint</b> 🔥";
         result.style.color = "#1E90FF";
       } else {
